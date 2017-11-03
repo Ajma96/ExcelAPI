@@ -23,7 +23,7 @@ public class Libro {
   private String nombreArchivo;
 
   /**
-   * 
+   * Contructor por defecto de la clase Libro.
    */
   public Libro() {
       
@@ -32,7 +32,7 @@ public class Libro {
   }
   
   /**
-   * 
+   * Constructor parametrizado de la clase Libro.
    * @param nombreArchivo 
    */
   public Libro( String nombreArchivo ) {
@@ -42,7 +42,7 @@ public class Libro {
   }
   
   /**
-   * 
+   * Constructor parametrizado de la clase Libro.
    * @param hojas
    * @param nombreArchivo 
    */
@@ -53,8 +53,8 @@ public class Libro {
   }
 
   /**
-   * 
-   * @return 
+   * Método que devuelve la lista de hojas que componen un Libro.
+   * @return Lista de hojas del libro.
    */
   public List<Hoja> getHojas() {
       
@@ -62,7 +62,7 @@ public class Libro {
   }
 
   /**
-   * 
+   * Método que asigna la lista de hojas que recibe a un libro.
    * @param hojas 
    */
   public void setHojas( List<Hoja> hojas ) {
@@ -71,8 +71,8 @@ public class Libro {
   }
 
   /**
-   * 
-   * @return 
+   * Método que devuelve el nombre del libro.
+   * @return nombre del libro.
    */
   public String getNombreArchivo() {
       
@@ -80,7 +80,7 @@ public class Libro {
   }
 
   /**
-   * 
+   * Método que asigna el nombre al libro que se le pasa como parámetro.
    * @param nombreArchivo 
    */
   public void setNombreArchivo( String nombreArchivo ) {
@@ -89,9 +89,9 @@ public class Libro {
   }
 
   /**
-   * 
+   * Método que añade la hoja que se le pasa como parámetro a las de dicho libro.
    * @param hoja
-   * @return 
+   * @return un flag que indica si se ha podido hacer con éxito o no.
    */
   public boolean addHoja( Hoja hoja ) {
       
@@ -99,9 +99,9 @@ public class Libro {
   }
 
   /**
-   * 
+   * Método que elimina la hoja con la posición que se le pasa en ese Libro.
    * @param index
-   * @return
+   * @return 
    * @throws ExcelAPIException 
    */
   public Hoja removeHoja( int index ) throws ExcelAPIException {
@@ -114,9 +114,9 @@ public class Libro {
   }
 
   /**
-   * 
+   * Método que devuelve la posición de una hoja en el libro.
    * @param index
-   * @return
+   * @return posición de la hoja.
    * @throws ExcelAPIException 
    */
   public Hoja indexHoja( int index ) throws ExcelAPIException {
@@ -129,25 +129,24 @@ public class Libro {
   }
 
   /**
-   * 
+   * Método que carga a memoria un archivo .xlsx (unmarshalling).
    */
   public void load() {
     
-    SXSSFWorkbook wb = new SXSSFWorkbook();
   }
 
   /**
-   * 
-   * @param filename 
+   * Método que carga en memoria un archivo con el nombre indicado.
+   * @param nombreArchivo 
    */
-  public void load( String filename ) {
+  public void load( String nombreArchivo ) {
       
-    this.nombreArchivo = filename;
+    this.nombreArchivo = nombreArchivo;
     this.load();
   }
 
   /**
-   * 
+   * Método que pasae un libro en memoria a un archivo .xlsx .
    * @throws ExcelAPIException 
    */
   public void save() throws ExcelAPIException {
@@ -182,7 +181,7 @@ public class Libro {
 }
 
   /**
-   * 
+   * Método que hace pasa a un archivo .xlsx un libro en memoria.
    * @param filename
    * @throws ExcelAPIException 
    */
@@ -190,22 +189,6 @@ public class Libro {
       
     this.nombreArchivo = filename;
     this.save();
-  }
-  
-  /**
-   * 
-   */
-  public void testExtension() {
-    
-    int finExtensionActual    = nombreArchivo.length() - 1;
-    int inicioExtensionActual = finExtensionActual - 5;
-    String extensionActual    = nombreArchivo.substring(inicioExtensionActual, finExtensionActual);
-    String miExtension        = ".xlsx";
-    
-    if ( !extensionActual.equals( miExtension ) ) {
-      nombreArchivo += miExtension;
-    }
-    
   }
 
 }

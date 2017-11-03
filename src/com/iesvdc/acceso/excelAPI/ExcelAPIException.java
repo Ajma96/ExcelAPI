@@ -6,14 +6,11 @@ package com.iesvdc.acceso.excelAPI;
  */
 public class ExcelAPIException extends Exception {
 
-    /**
-     * 
-     */
     public ExcelAPIException() {
     }
 
     /**
-     * 
+     * Expulsa una excepción de la API personalizada
      * @param msg 
      */
     public ExcelAPIException( String msg ) {

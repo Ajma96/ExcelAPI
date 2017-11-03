@@ -12,6 +12,8 @@ import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 public class HolaMundoExcel {
 
   /**
+   * El típico "Hola Mundo" llevado a un .xlsx de la mano del tratamiento que nos
+   * permite hacer Apache POI de los XML detrás del mismo.
    * @param args the command line arguments
    */
   public static void main( String[] args ) {

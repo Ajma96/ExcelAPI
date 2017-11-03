@@ -3,6 +3,8 @@ package com.iesvdc.acceso.testsExcelAPI;
 import com.iesvdc.acceso.excelAPI.ExcelAPIException;
 import com.iesvdc.acceso.excelAPI.Hoja;
 import com.iesvdc.acceso.excelAPI.Libro;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -32,7 +34,7 @@ public class LibroTest {
     public void tearDown() {}
 
     /**
-     * Test of getNombreArchivo method, of class WorkBook.
+     * Test del método getNombreArchivo, de la clase Libro.
      */
     @Test
     public void testGetNombreArchivo() {
@@ -51,7 +53,7 @@ public class LibroTest {
     }
 
     /**
-     * Test of setNombreArchivo method, of class WorkBook.
+     * Test del método setNombreArchivo, de la clase Libro.
      */
     @Test
     public void testSetNombreArchivo() {
@@ -69,7 +71,7 @@ public class LibroTest {
     }
 
     /**
-     * Test of addAddHoja method, of class WorkBook.
+     * Test del método addHoja, de la clase Libro.
      */
     @Test
     public void testAddHoja() {
@@ -80,12 +82,15 @@ public class LibroTest {
         
         boolean resultadoEsperado = true;
         boolean resultadoObtenido = libro.addHoja( hoja );
+        
         assertEquals(resultadoEsperado, resultadoObtenido );
 
     }
 
     /**
-     * Test of removeHoja method, of class WorkBook.
+     * Test del método removeHoja, de la clase Libro.
+     * @exception Puede arrojar excepciones en el borrado por acceso a zona
+     * restringida de memoria.
      */
     @Test
     public void testRemoveHoja() throws Exception {
@@ -106,7 +111,8 @@ public class LibroTest {
     }
 
     /**
-     * Test of load method, of class Libro
+     * Test del método load, de la clase Libro.
+     * @exception Puede arrojar excepción por no encontrar el archivo.
      */
     @Test
     public void testLoad() throws Exception {
@@ -123,10 +129,12 @@ public class LibroTest {
     }
     
     /**
-     * Test of save method, of class WorkBook.
+     * Test del método save, de la clase Libro.
      * Es un poco redundante teniendo ya un testLoad, pero creo que la mejor
      * forma de testear esto era repitiendo ese código, porque no quería eliminar
      * testLoad(), quiero conservarlo como un método independiente.
+     * @exception Puede arrojar excepción al cargar el archivo para comprobar si
+     * se ha exportado bien (no lo encuentra).
      */
     @Test
     public void testSave() throws ExcelAPIException {
@@ -166,6 +174,36 @@ public class LibroTest {
         System.out.println( ex.getLocalizedMessage() );
       }
         
+  }
+    
+  /**
+   * Método que testea la extensión del archivo.
+   */
+  public void testExtension() {
+    
+    System.out.println("testExtension");
+      
+    String nombreArchivo = "pruebaExtension.xlsx";
+    String nombreLibro   = "pruebaExtension";
+    
+    Libro libroExtension = new Libro( nombreLibro );
+        try {
+            libroExtension.save();
+        }
+        catch (ExcelAPIException ex) {
+            System.out.println( ex.getLocalizedMessage() );
+        }
+    
+    int finExtensionActual    = nombreArchivo.length() - 1;
+    int inicioExtensionActual = finExtensionActual - 5;
+    String extensionActual    = nombreArchivo.substring(inicioExtensionActual, 
+                                                        finExtensionActual);
+    String miExtensionDeseada = ".xlsx";
+    
+    if ( !extensionActual.equals( miExtensionDeseada ) ) {
+      nombreArchivo += miExtensionDeseada;
+    }
+    
   }
     
 }
