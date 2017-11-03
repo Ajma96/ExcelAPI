@@ -6,9 +6,16 @@ package com.iesvdc.acceso.excelAPI;
  */
 public class ExcelAPIException extends Exception {
 
+    /**
+     * 
+     */
     public ExcelAPIException() {
     }
 
+    /**
+     * 
+     * @param msg 
+     */
     public ExcelAPIException( String msg ) {
         super("ExcelApiExcepcion:: " + msg);
     }

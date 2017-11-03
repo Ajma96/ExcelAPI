@@ -13,9 +13,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
-
-
-
 /**
  * @author amacias
  * @version 0.1
@@ -25,49 +22,88 @@ public class Libro {
   private List<Hoja> hojas;
   private String nombreArchivo;
 
+  /**
+   * 
+   */
   public Libro() {
       
     this.hojas         = new ArrayList<>();
     this.nombreArchivo = "nuevo.xlsx";
   }
   
+  /**
+   * 
+   * @param nombreArchivo 
+   */
   public Libro( String nombreArchivo ) {
     
     this.hojas         = new ArrayList<>();
     this.nombreArchivo = nombreArchivo;
   }
   
+  /**
+   * 
+   * @param hojas
+   * @param nombreArchivo 
+   */
   public Libro( List<Hoja> hojas, String nombreArchivo ) {
       
     this.hojas         = hojas;
     this.nombreArchivo = nombreArchivo;
   }
 
+  /**
+   * 
+   * @return 
+   */
   public List<Hoja> getHojas() {
       
     return hojas;
   }
 
+  /**
+   * 
+   * @param hojas 
+   */
   public void setHojas( List<Hoja> hojas ) {
       
     this.hojas = hojas;
   }
 
+  /**
+   * 
+   * @return 
+   */
   public String getNombreArchivo() {
       
     return nombreArchivo;
   }
 
+  /**
+   * 
+   * @param nombreArchivo 
+   */
   public void setNombreArchivo( String nombreArchivo ) {
       
     this.nombreArchivo = nombreArchivo;
   }
 
+  /**
+   * 
+   * @param hoja
+   * @return 
+   */
   public boolean addHoja( Hoja hoja ) {
       
     return this.hojas.add( hoja );
   }
 
+  /**
+   * 
+   * @param index
+   * @return
+   * @throws ExcelAPIException 
+   */
   public Hoja removeHoja( int index ) throws ExcelAPIException {
       
     if ( index < 0 || index > this.hojas.size() ) {
@@ -77,6 +113,12 @@ public class Libro {
     return this.hojas.remove( index );
   }
 
+  /**
+   * 
+   * @param index
+   * @return
+   * @throws ExcelAPIException 
+   */
   public Hoja indexHoja( int index ) throws ExcelAPIException {
       
     if ( index < 0 || index > this.hojas.size() ) {
@@ -86,17 +128,28 @@ public class Libro {
     return this.hojas.get( index );
   }
 
+  /**
+   * 
+   */
   public void load() {
     
-    
+    SXSSFWorkbook wb = new SXSSFWorkbook();
   }
 
+  /**
+   * 
+   * @param filename 
+   */
   public void load( String filename ) {
       
     this.nombreArchivo = filename;
     this.load();
   }
 
+  /**
+   * 
+   * @throws ExcelAPIException 
+   */
   public void save() throws ExcelAPIException {
       
     SXSSFWorkbook wb = new SXSSFWorkbook();
@@ -128,12 +181,20 @@ public class Libro {
       }
 }
 
+  /**
+   * 
+   * @param filename
+   * @throws ExcelAPIException 
+   */
   public void save( String filename ) throws ExcelAPIException {
       
     this.nombreArchivo = filename;
     this.save();
   }
   
+  /**
+   * 
+   */
   public void testExtension() {
     
     int finExtensionActual    = nombreArchivo.length() - 1;
