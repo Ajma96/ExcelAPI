@@ -25,10 +25,22 @@ public class Libro {
   private List<Hoja> hojas;
   private String nombreArchivo;
 
-  public Libro( List<Hoja> hojas, String nombreArchivo ) {
+  public Libro() {
       
     this.hojas         = new ArrayList<>();
     this.nombreArchivo = "nuevo.xlsx";
+  }
+  
+  public Libro( String nombreArchivo ) {
+    
+    this.hojas         = new ArrayList<>();
+    this.nombreArchivo = nombreArchivo;
+  }
+  
+  public Libro( List<Hoja> hojas, String nombreArchivo ) {
+      
+    this.hojas         = hojas;
+    this.nombreArchivo = nombreArchivo;
   }
 
   public List<Hoja> getHojas() {

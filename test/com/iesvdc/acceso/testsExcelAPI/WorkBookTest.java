@@ -1,5 +1,10 @@
 package com.iesvdc.acceso.testsExcelAPI;
 
+import com.iesvdc.acceso.excelAPI.Hoja;
+import com.iesvdc.acceso.excelAPI.Libro;
+import java.util.ArrayList;
+import java.util.List;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -39,13 +44,14 @@ public class WorkBookTest {
     @Test
     public void testGetFilename() {
         
-        String filename = "test.xlsx";
-        System.out.println("getFilename");
-        WorkBook instance = new WorkBook( filename );
+      System.out.println("getNombreArchivo");
+      
+      String nombreArchivo = "test.xlsx";  
+      Libro libro = new Libro( nombreArchivo );
         
-        String expResult = filename;
-        String result = instance.getFilename();
-        assertEquals(expResult, result);
+      String expResult = nombreArchivo;
+      String result = libro.getNombreArchivo();
+      assertEquals(expResult, result);
     }
 
     /**
@@ -55,11 +61,12 @@ public class WorkBookTest {
     public void testSetFilename() {
         
         System.out.println( "setFilename" );
-        String filename   = "TestFilename.xlsx"; 
-        WorkBook instance = new WorkBook();
         
-        instance.setFilename(filename);
-        assertEquals( "testSetFilename", filename, instance.getFilename() );
+        String nombreArchivo   = "TestFilename.xlsx"; 
+        Libro libro            = new Libro();
+        
+        libro.setNombreArchivo( nombreArchivo );
+        assertEquals( "testSetFilename", nombreArchivo, libro.getNombreArchivo());
 
     }
 
@@ -69,12 +76,12 @@ public class WorkBookTest {
     @Test
     public void testAddDataSheet_DataSheet() {
         
-        System.out.println( "addDataSheet" );
-        DataSheet ds      = new DataSheet( "Mi hoja", 5, 5 );
-        WorkBook instance = new WorkBook();
+        System.out.println( "addHoja" );
+        Hoja hoja   = new Hoja( "Mi hoja", 5, 5 );
+        Libro libro = new Libro();
         
         boolean expResult = true;
-        boolean result    = instance.addDataSheet( ds );
+        boolean result    = libro.addHoja( hoja );
         assertEquals( expResult, result );
 
     }
@@ -86,16 +93,16 @@ public class WorkBookTest {
     public void testAddDataSheet_int_DataSheet() {
         
         System.out.println( "addDataSheet" );
-        DataSheet ds1 = new DataSheet( "Mi hoja1", 5, 5 );
-        DataSheet ds2 = new DataSheet( "Mi hoja2", 5, 5 );
+        Hoja hoja1 = new Hoja( "Mi hoja1", 5, 5 );
+        Hoja hoja2 = new Hoja( "Mi hoja2", 5, 5 );
         // int index = 1;
         // DataSheet ds = null;
-        WorkBook instance = new WorkBook();
-        instance.addDataSheet( ds1 );
-        instance.addDataSheet( 0, ds2 );
+        Libro libro = new Libro();
+        libro.addHoja( hoja1 );
+        libro.addHoja( 0, hoja2 );
         
-        DataSheet ds3 = new DataSheet( "Mi hoja3", 5, 5 );
-        instance.addDataSheet( 1, ds3 );
+        Hoja hoja3 = new Hoja( "Mi hoja3", 5, 5 );
+        libro.addHoja( 1, hoja3 );
     }
 
     /**
